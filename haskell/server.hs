@@ -1,8 +1,4 @@
--- To install required deps: 
--- $ cabal install happstack-server
-
 module Main where
-
 import Happstack.Server (ServerPart, look, nullConf, simpleHTTP, ok)
 
 answerQuestion :: String -> String
@@ -13,5 +9,6 @@ server =
   do query <- look "q"
      ok $ answerQuestion query
 
+-- Later can do main = simpleHTTP nullconf $ server
 main :: IO()
-main = simpleHTTP nullConf $ server
+main = simpleHTTP nullConf $ ok "ohai"
