@@ -1,5 +1,4 @@
-<?
-require 'solver.php';
+<?php 
 $host = "127.0.0.1";
 $port = 9000;
 set_time_limit(0);
@@ -10,8 +9,11 @@ while (true) {
   $spawn = socket_accept($socket);
   $input = socket_read($spawn, 1024, PHP_NORMAL_READ);
   $input = trim($input);
- 
-  $answer = solve($input);
+  if (preg_match('/q\=(.*)$/', $input, $matches)) {
+    $answer = "Fred" . $matches[1];
+  } else {
+    $answer = "Jack";
+  }
 
   $result = "HTTP/1.0 200 OK\n";
   $result .= "Date: Sat, 22 Dec 2012 00:00:01 GMT\n";
