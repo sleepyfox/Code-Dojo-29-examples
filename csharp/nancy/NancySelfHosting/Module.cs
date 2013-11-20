@@ -1,23 +1,18 @@
-﻿namespace NancySelfHosting
-{
-    using Nancy;
-    using System;
-    using System.Diagnostics;
+﻿using System.Diagnostics;
+using Nancy;
 
+namespace NancySelfHosting
+{
     public class Module : NancyModule
     {
         public Module()
         {
-            Get["/"] = parameters => { return handleQuery(parameters); }; //"Hello World";
-        }
-
-        private String handleQuery(dynamic parameters)
-        {
-            String query = "Query: ";
-            query += Request.Url.Query;
-
-            Debug.WriteLine(query);
-            return query;
+            Get["/"] = parameters =>
+            {
+                var query = "Query: " + Request.Url.Query;
+                Debug.WriteLine(query);
+                return query;
+            };
         }
     }
 }
